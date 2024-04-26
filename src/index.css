@@ -1,0 +1,44 @@
+.loginWrapper {
+
+    margin-top: 150px;
+    margin-left: 60px;
+    width: 35%;
+    display: inline-block;
+}
+
+.loginHeader {
+    text-align: center;
+
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.button {
+    width: 100%;
+}
+
+img {
+    margin: auto;
+    width: 50%;
+    height: 900px;
+}
+
+
+@media only screen and (max-width:768px) {
+    .loginWrapper {
+        width: 100%;
+        margin-top: 30px;
+
+    }
+
+    img {
+        content: url('assets/assets5.jpg');
+        width: 100%;
+        height: auto;   
+    }
+
+}
+
