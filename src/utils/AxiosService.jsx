@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const AxiosService = axios.create({
-    baseURL:"https://kskarthik.azurewebsites.net/",
+    baseURL:"https://kskarthik.azurewebsites.net",
     headers:{
         "Content-Type":"application/json"
     }
