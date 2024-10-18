@@ -7,15 +7,11 @@ import Assets from './Assets';
 
 function Inventory() {
 
- const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
-  const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle)
-  }
   return <>
    <div className='grid-container'>
-      <Header OpenSidebar={OpenSidebar}/>
-      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+      <Header />
+      <Sidebar />
       <Assets />
     </div>
     </>

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import './admin.css'
+import './bill.css'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import toast,{Toaster} from 'react-hot-toast';

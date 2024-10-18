@@ -6,6 +6,7 @@ import UserGuard from './UserGuard'
 import Inventory from '../components/Inventory'
 import AddAssets from '../components/AddAssets'
 import EditAsset from '../components/EditAsset'
+import BillForm from '../components/BillForm'
 import { Navigate } from 'react-router-dom'
 
 
@@ -41,6 +42,10 @@ const AppRoutes=[
     {
         path:'/editasset/:id',
         element:<EditAsset/>
+    },
+    {
+        path:'/billform',
+        element:<BillForm/>
     },
     {
         path:'*',

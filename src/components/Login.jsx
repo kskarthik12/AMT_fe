@@ -32,6 +32,7 @@ function Login() {
           sessionStorage.setItem('role',res.data.role)
           sessionStorage.setItem('name',res.data.name)
           sessionStorage.setItem('userId',res.data.id)
+          sessionStorage.setItem('company_name',res.data.cp_name)
           toast.success(res.data.message) 
           if(res.data.role==='admin')
             navigate('/admindashboard')

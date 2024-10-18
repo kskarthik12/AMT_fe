@@ -12,8 +12,15 @@ function AddAssets() {
   const handleChangeAdd = async (e) => {
     e.preventDefault();
     try {
+      const company_name = sessionStorage.getItem('company_name'); // Get company name from session storage
+
+    if (!company_name) {
+      toast.error("Company name is required");
+      return;
+    }
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData);
+      data.company_name = company_name;
 
       if (data.a_id) {
         const res = await AxiosService.post(ApiRoutes.AddAsset.path, data, {
@@ -40,14 +47,31 @@ function AddAssets() {
       </div>
       <Form onSubmit={handleChangeAdd}>
         <Form.Group className="mb-3">
-          <Form.Label>Asset Name</Form.Label>
+          <Form.Label>Product Name</Form.Label>
           <Form.Control type="text" placeholder="Enter Asset Name" name='a_name' />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Asset Sold</Form.Label>
-          <Form.Control type="number" placeholder="Enter Asset sold Quantity" name='a_sales' />
+          <Form.Label>Brand Name</Form.Label>
+          <Form.Control type="text" placeholder="Enter Brand Name" name='b_name' />
         </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Asset ID</Form.Label>
+          <Form.Control type="number" placeholder="Enter Asset ID" name='a_id' />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Purchase Price </Form.Label>
+          <Form.Control type="number" placeholder="Enter Purchase Price" name='purchase_price' />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Selling Price</Form.Label>
+          <Form.Control type="number" placeholder="Enter Selling Price" name='selling_price' />
+        </Form.Group>
+
+        
 
         <Form.Group className="mb-3">
           <Form.Label>Available Asset</Form.Label>
@@ -55,9 +79,11 @@ function AddAssets() {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Asset ID</Form.Label>
-          <Form.Control type="number" placeholder="Enter Asset ID" name='a_id' />
+          <Form.Label>Asset Position</Form.Label>
+          <Form.Control type="number" placeholder="Enter Asset Position" name='a_position' />
         </Form.Group>
+
+        
 
         <Button className='button' variant="primary" type="submit">
           Add Asset

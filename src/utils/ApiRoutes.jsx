@@ -30,6 +30,10 @@ const ApiRoutes = {
     GetAssetById:{
         path:"/user/editasset/:id",
         authenticate:true
+    },
+    Billform:{
+        path:'/user/generate-bill',
+        authenticate:true
     }
     
 }

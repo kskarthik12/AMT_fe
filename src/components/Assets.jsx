@@ -8,9 +8,11 @@ import ReactSearchBox from "react-search-box";
 import { useNavigate } from 'react-router-dom';
 
 function Assets() {
+    
     const [data, setData] = useState([]);
     const [originalData, setOriginalData] = useState([]);
     const navigate = useNavigate();
+    const companyName = sessionStorage.getItem('company_name'); // Get company name from session storage
 
     useEffect(() => {
         fetchData();
@@ -22,8 +24,9 @@ function Assets() {
                 authenticate: ApiRoutes.ASSETS.authenticate
             });
             if (res.status === 200) {
-                setData(res.data.assets);
-                setOriginalData(res.data.assets); 
+                const filteredAssets = res.data.assets.filter(asset => asset.company_name === companyName); // Filter by company_name
+                setData(filteredAssets);
+                setOriginalData(filteredAssets);
             }
         } catch (error) {
             handleRequestError(error);
@@ -103,20 +106,27 @@ function Assets() {
             <table>
                 <thead>
                     <tr>
-                        <th>Asset Name</th>
-                        <th>Asset Sold</th>
-                        <th>Asset Available</th>
-                        <th>Asset ID</th>
+                        <th>Product Name</th>
+                        <th>Brand Name</th>
+                        <th>Asset Id</th>
+                        <th>Purchase Price</th>
+                        <th>Selling Price</th>
+                        <th>Available Asset</th>
+                        <th>Asset Position</th>
                         <th>Last Update</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.map((item, index) => (
                         <tr key={index}>
                             <td>{item.a_name}</td>
-                            <td>{item.a_sales}</td>
-                            <td>{item.a_stock}</td>
+                            <td>{item.b_name}</td>
                             <td>{item.a_id}</td>
+                            <td>{item.purchase_price}</td>
+                            <td>{item.selling_price}</td>
+                            <td>{item.a_stock}</td>
+                            <td>{item.a_position}</td>
                             <td>{item.stock_last_update}</td>
                             <td><Button className='button' variant="secondary" type="submit" onClick={() => handleEdit(item._id)}>Edit</Button></td>
                             <td><Button className='button' variant="danger" type="submit" onClick={() => handleDelete(item._id)}>Delete</Button></td>
