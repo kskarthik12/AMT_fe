@@ -40,8 +40,6 @@ function Assets() {
         }
     };
 
-   
-
     const handleChangeAdd = () => {
         let role = sessionStorage.getItem('role');
         if (role === 'admin')
@@ -100,40 +98,81 @@ function Assets() {
             <ReactSearchBox
                 placeholder="Search"
                 onChange={handleSearch} 
+                className="search-box" // Added a class for styling
             />
-            <Button className='button' variant="primary" type="submit" onClick={handleChangeAdd}>Add Assets</Button>
+            <Button className='button' variant="primary" type="button" onClick={handleChangeAdd}>Add Assets</Button>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Brand Name</th>
-                        <th>Asset Id</th>
-                        <th>Purchase Price</th>
-                        <th>Selling Price</th>
-                        <th>Available Asset</th>
-                        <th>Asset Position</th>
-                        <th>Last Update</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.a_name}</td>
-                            <td>{item.b_name}</td>
-                            <td>{item.a_id}</td>
-                            <td>{item.purchase_price}</td>
-                            <td>{item.selling_price}</td>
-                            <td>{item.a_stock}</td>
-                            <td>{item.a_position}</td>
-                            <td>{item.stock_last_update}</td>
-                            <td><Button className='button' variant="secondary" type="submit" onClick={() => handleEdit(item._id)}>Edit</Button></td>
-                            <td><Button className='button' variant="danger" type="submit" onClick={() => handleDelete(item._id)}>Delete</Button></td>
+            <div className="table-responsive">
+                <table className="desktop-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Brand Name</th>
+                            <th>Asset Id</th>
+                            <th>Purchase Price</th>
+                            <th>Selling Price</th>
+                            <th>Available Asset</th>
+                            <th>Asset Position</th>
+                            <th>Last Update</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.a_name}</td>
+                                <td>{item.b_name}</td>
+                                <td>{item.a_id}</td>
+                                <td>{item.purchase_price}</td>
+                                <td>{item.selling_price}</td>
+                                <td>{item.a_stock}</td>
+                                <td>{item.a_position}</td>
+                                <td>{item.stock_last_update}</td>
+                                <td>
+                                    <Button className='button' variant="secondary" type="button" onClick={() => handleEdit(item._id)}>Edit</Button>
+                                    <Button className='button' variant="danger" type="button" onClick={() => handleDelete(item._id)}>Delete</Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            {/* Mobile view: Cards instead of table */}
+            <div className="mobile-view">
+                {data.map((item, index) => (
+                    <div className="asset-card" key={index}>
+                        <div className="asset-info">
+                            <strong>Product Name:</strong> {item.a_name}
+                        </div>
+                        <div className="asset-info">
+                            <strong>Brand Name:</strong> {item.b_name}
+                        </div>
+                        <div className="asset-info">
+                            <strong>Asset Id:</strong> {item.a_id}
+                        </div>
+                        <div className="asset-info">
+                            <strong>Purchase Price:</strong> {item.purchase_price}
+                        </div>
+                        <div className="asset-info">
+                            <strong>Selling Price:</strong> {item.selling_price}
+                        </div>
+                        <div className="asset-info">
+                            <strong>Available Assets:</strong> {item.a_stock}
+                        </div>
+                        <div className="asset-info">
+                            <strong>Asset Position:</strong> {item.a_position}
+                        </div>
+                        <div className="asset-info">
+                            <strong>Last Update:</strong> {item.stock_last_update}
+                        </div>
+                        <div className="asset-actions">
+                            <Button className='button' variant="secondary" type="button" onClick={() => handleEdit(item._id)}>Edit</Button>
+                            <Button className='button' variant="danger" type="button" onClick={() => handleDelete(item._id)}>Delete</Button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </main>
     );
 }

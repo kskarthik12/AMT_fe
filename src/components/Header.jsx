@@ -16,19 +16,19 @@ function Header({ OpenSidebar }) {
     }, []);
 
     const fetchData = async () => {
-
         let role = sessionStorage.getItem('role');
-        if (role === 'admin')
-        try {
-            const res = await AxiosService.get(ApiRoutes.ASSETS.path, {
-                authenticate: ApiRoutes.ASSETS.authenticate
-            });
-            if (res.status === 200) {
-                setData(res.data.assets);
-                checkLowStock(res.data.assets);
+        if (role === 'admin') {
+            try {
+                const res = await AxiosService.get(ApiRoutes.ASSETS.path, {
+                    authenticate: ApiRoutes.ASSETS.authenticate
+                });
+                if (res.status === 200) {
+                    setData(res.data.assets);
+                    checkLowStock(res.data.assets);
+                }
+            } catch (error) {
+                handleRequestError(error);
             }
-        } catch (error) {
-            handleRequestError(error);
         }
     };
 
@@ -50,16 +50,15 @@ function Header({ OpenSidebar }) {
     return (
         <header className='header'>
             <div className='menu-icon'>
-                <BsJustify className='icon' onClick={OpenSidebar} />
+                <BsJustify className='icon' onClick={OpenSidebar} /> {/* Sidebar toggle */}
             </div>
             
             <div className='header-right'>
                 <BsFillBellFill className='icon' onClick={fetchData} />
-                {/* <BsFillEnvelopeFill className='icon' /> */}
                 <BsPersonCircle className='icon' />
             </div>
             <div>
-                <Button variant='danger' onClick={logout}>Logout</Button>
+                <Button variant='danger' onClick={logout}>Logout</Button> {/* Logout button */}
             </div>
         </header>
     );

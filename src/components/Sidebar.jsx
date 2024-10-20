@@ -1,15 +1,14 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,
   BsListCheck, BsMenuButtonWideFill, BsFillGearFill
 } from 'react-icons/bs';
-
 import { RiBillFill } from "react-icons/ri";
 
-function Sidebar({ openSidebarToggle, OpenSidebar }) {
+function Sidebar({ openSidebarToggle }) { // Removed unnecessary 'OpenSidebar' prop
   return (
-    <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive" : ""}>
+    <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive open" : "sidebar-hidden"}>
       <div className='sidebar-title'>
         <div className='sidebar-brand'>
           <BsCart3 className='icon_header' /> SHOP
@@ -18,7 +17,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
       <ul className='sidebar-list'>
         <li className='sidebar-list-item'>
-          <Link to="/admindashboard" onClick={(e) => e.stopPropagation()}>
+          <Link to="/admindashboard">
             <BsGrid1X2Fill className='icon' /> Dashboard
           </Link>
         </li>
@@ -28,7 +27,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to="/billform" onClick={(e) => e.stopPropagation()}>
+          <Link to="/billform">
             <RiBillFill className='icon' /> Bill
           </Link>
         </li>
@@ -43,7 +42,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to="/inventory" onClick={(e) => e.stopPropagation()}>
+          <Link to="/inventory">
             <BsListCheck className='icon' /> Inventory
           </Link>
         </li>
@@ -59,7 +58,8 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         </li>
       </ul>
     </aside>
-  )
+  );
 }
 
 export default Sidebar;
+  

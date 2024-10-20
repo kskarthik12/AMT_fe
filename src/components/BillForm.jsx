@@ -20,6 +20,12 @@ const BillForm = () => {
   const [data, setData] = useState([]);
   const companyName = sessionStorage.getItem('company_name');
 
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+
+  const toggleSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -106,6 +112,7 @@ const BillForm = () => {
         customerAddress,
         customerGST: customerGST || undefined, // Optional GST field
       },
+      company_name:companyName,
       items: items,
       totalAmount: totalAmount,
     };
@@ -143,8 +150,9 @@ const BillForm = () => {
   return (
     <>
     <div className='grid-container'>
-    <Header />
-    <Sidebar />
+    <Header OpenSidebar={toggleSidebar} /> 
+
+      <Sidebar openSidebarToggle={openSidebarToggle} />
     <div className="bill-form-container">
       <h2>Generate Bill</h2>
       {error && <div className="alert alert-danger">{error}</div>}
